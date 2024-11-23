@@ -33,12 +33,40 @@ Use these two parameters to take the human and computer choices as arguments.
 make the humanChoice case-insensitive so they can input any correctly spelled valid choice.
 include a console.log to put a string value representing the winner/loser. example - "you lose, paper beats rock!"
 increment the human or computer score variable based on the winner.*/
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice();
+
 
 function playRound(humanChoice, computerChoice) {
-
+    if (humanChoice === "scissors" && computerChoice === "rock"){
+        alert("You lose! Rock beats scissors")
+        computerScore += 1
+    } else if (humanChoice === "scissors" && computerChoice == "paper") {
+        alert("You win! Scissors beats paper")
+        humanScore += 1
+    } else if (humanChoice === "scissors" && computerChoice == "scissors") {
+        alert("Tie game!")
+    } else if (humanChoice === "rock" && computerChoice == "paper") {
+        alert("You lose! Paper beats rock")
+        computerScore += 1
+    } else if (humanChoice === "rock" && computerChoice == "scissors") {
+        alert("You win! Rock beats scissors")
+        humanScore += 1
+    } else if (humanChoice === "rock" && computerChoice == "rock") {
+        alert("Tie game!")
+    } else if (humanChoice === "paper" && computerChoice == "scissors") {
+        alert("You lose! Scissors beats paper")
+        computerScore += 1
+    } else if (humanChoice === "paper" && computerChoice == "rock") {
+        alert("You win! Paper beats rock")
+        humanScore += 1
+    } else if (humanChoice === "paper" && computerChoice == "paper") {
+        alert("Tie game!")
+    }
 }
-/*the game will be played for 5 rounds. create a function called playGame that calls
-playRound to play 5 rounds, keeps track of the scores, and declares a winner at the end.
-move the playRound function into playGame.*/
+
+function playGame(){
+    const computerSelection = getComputerChoice();
+
+    const humanSelection = getHumanChoice();
+
+    
+}
