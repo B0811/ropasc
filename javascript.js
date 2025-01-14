@@ -24,9 +24,8 @@ function getHumanChoice(choice){
     
 }
 //create a variable to keep track of the players score called humanScore
-let humanScore = 0
+
 //create a variable to keep track of the computers score called computerScore
-let computerScore = 0
 /*create a function that will play a single round called playRound.
 define two parameters for playRound: humanChoice and computerChoice.
 Use these two parameters to take the human and computer choices as arguments.
@@ -35,38 +34,51 @@ include a console.log to put a string value representing the winner/loser. examp
 increment the human or computer score variable based on the winner.*/
 
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === "scissors" && computerChoice === "rock"){
-        alert("You lose! Rock beats scissors")
-        computerScore += 1
-    } else if (humanChoice === "scissors" && computerChoice == "paper") {
-        alert("You win! Scissors beats paper")
-        humanScore += 1
-    } else if (humanChoice === "scissors" && computerChoice == "scissors") {
-        alert("Tie game!")
-    } else if (humanChoice === "rock" && computerChoice == "paper") {
-        alert("You lose! Paper beats rock")
-        computerScore += 1
-    } else if (humanChoice === "rock" && computerChoice == "scissors") {
-        alert("You win! Rock beats scissors")
-        humanScore += 1
-    } else if (humanChoice === "rock" && computerChoice == "rock") {
-        alert("Tie game!")
-    } else if (humanChoice === "paper" && computerChoice == "scissors") {
-        alert("You lose! Scissors beats paper")
-        computerScore += 1
-    } else if (humanChoice === "paper" && computerChoice == "rock") {
-        alert("You win! Paper beats rock")
-        humanScore += 1
-    } else if (humanChoice === "paper" && computerChoice == "paper") {
-        alert("Tie game!")
-    }
-}
+
 
 function playGame(){
+
+    let humanScore = 0
+
+    let computerScore = 0
+
     const computerSelection = getComputerChoice();
 
     const humanSelection = getHumanChoice();
 
-    
+    if (humanScore + computerScore !== 5){
+        playRound
+    } else if (humanScore + computerScore === 5){
+        } if (humanScore > computerScore){
+            alert("You Win!")
+        } else alert("You Lose!")
+
+
+    function playRound(humanChoice, computerChoice) {
+        if (humanChoice === "scissors" && computerChoice === "rock"){
+            alert("You lose! Rock beats scissors")
+            computerScore += 1
+        } else if (humanChoice === "scissors" && computerChoice == "paper") {
+            alert("You win! Scissors beats paper")
+            humanScore += 1
+        } else if (humanChoice === "scissors" && computerChoice == "scissors") {
+            alert("Tie game!")
+        } else if (humanChoice === "rock" && computerChoice == "paper") {
+            alert("You lose! Paper beats rock")
+            computerScore += 1
+        } else if (humanChoice === "rock" && computerChoice == "scissors") {
+            alert("You win! Rock beats scissors")
+            humanScore += 1
+        } else if (humanChoice === "rock" && computerChoice == "rock") {
+            alert("Tie game!")
+        } else if (humanChoice === "paper" && computerChoice == "scissors") {
+            alert("You lose! Scissors beats paper")
+            computerScore += 1
+        } else if (humanChoice === "paper" && computerChoice == "rock") {
+            alert("You win! Paper beats rock")
+            humanScore += 1
+        } else if (humanChoice === "paper" && computerChoice == "paper") {
+            alert("Tie game!")
+        }
+    }
 }
