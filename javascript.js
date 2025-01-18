@@ -21,7 +21,7 @@ function getHumanChoice(choice){
     } else {
         alert("Invalid choice")
     }
-    playRound
+    
     
 }
 
