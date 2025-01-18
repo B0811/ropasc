@@ -1,88 +1,117 @@
-// create a function called getComputerChoice that randomly generates and returns "rock", "paper", or "scissors" as a string
-let computerPlayer = getComputerChoice()
-function getComputerChoice(computerPlayer) {
-    let bop = Math.floor(Math.random()* 10) + 1;
-    if (bop <= 4) {
-        return  "rock"
-    } else if (bop > 4 && bop <= 7) {
-        return "paper"
-    } else {
-        return "scissors"
+const game = () => {
+    let playerScore = 0;
+    let computerScore = 0;
+    let moves = 0;
+
+    const playGame = () => {
+        const rockBtn = document.querySelector('.rock');
+        const paperBtn = document.querySelector('.paper');
+        const scissorBtn = document.querySelector('scissor');
+        const playerOptions = [rockBtn, paperBtn, scissorBtn];
+        const computerOptions = ['rock', 'paper', 'scissors']
+
+        playerOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                const movesLeft =
+document.querySelector('.movesLeft');
+                moves++;
+                movesLeft.innerText = 'Moves Left: ${10 - moves}';
+
+                const choiceNumber = Math.floor(Math.random() * 3);
+                const computerChoice =
+computerOptions[choiceNumber];
+
+                winner(this.innerText, computerChoice)
+
+                if (moves == 10) {
+                    gameOver(playerOptions, movesLeft);
+                }
+            })
+        })
     }
-}
 
-//write a function called getHumanChoice that will take a users input/choice and returns it as a string.
-function getHumanChoice(choice){
-    let pChoice = prompt("Choose your weapon!: ");
-    pChoice = pChoice.toLocaleLowerCase();
-    if ((pChoice === "scissors") || (pChoice === "paper") || (pChoice === "rock")) {
-        alert("You've chosen: " + pChoice + "!") 
-        return pChoice 
-    } else {
-        alert("Invalid choice")
+    const winner = (player, computer) => {
+        const result = document.querySelector('result');
+        const playerScoreBoard = document.querySelector('.p-count');
+        const computerScoreBoard = document.querySelector('.c-count');
+        player = player.toLowerCase();
+        computer = computer.toLowerCase();
+        if (player === computer) {
+            result.textContent = 'Tie'
+        }
+        else if (player == 'rock') {
+            if (computer == 'paper') {
+                result.textContent = 'Computer Won';
+                computerScore++;
+                computerScoreBoard.textContent = computerScore;
+
+            } else {
+                result.textContent = 'Player Won'
+                playerScore++;
+                playerScoreBoard.textContent = playerScore;
+            }
+        }
+        else if (player == 'scissors') {
+            if (computer == 'rock') {
+                result.textContent = 'Computer Won';
+                computerScore++;
+                computerScoreBoard.textContent = computerScore;
+
+            } else {
+                result.textContent = 'Player Won'
+                playerScore++;
+                playerScoreBoard.textContent = playerScore;
+            }
+        }
+        else if (player == 'paper') {
+            if (computer == 'scissors') {
+                result.textContent = 'Computer Won';
+                computerScore++;
+                computerScoreBoard.textContent = computerScore;
+
+            } else {
+                result.textContent = 'Player Won'
+                playerScore++;
+                playerScoreBoard.textContent = playerScore;
+            }
+        }
     }
-    
-    
-}
+    const gameOver = (playerOptions, movesLeft) => {
 
-//create a variable to keep track of the players score called humanScore
-let humanScore = 0
+        const chooseMove = document.querySelector('.move');
+        const result = document.querySelector('.result');
+        const reloadBtn = document.querySelector('.reload');
 
-let computerScore = 0
-//create a variable to keep track of the computers score called computerScore
-/*create a function that will play a single round called playRound.
-define two parameters for playRound: humanChoice and computerChoice.
-Use these two parameters to take the human and computer choices as arguments.
-make the humanChoice case-insensitive so they can input any correctly spelled valid choice.
-include a console.log to put a string value representing the winner/loser. example - "you lose, paper beats rock!"
-increment the human or computer score variable based on the winner.*/
+        playerOptions.forEach(option => {
+            option.style.display = 'none';
+        })
 
-function playRound(humanChoice, computerChoice) {
+        chooseMove.innerText = 'Game Over!'
+        movesLeft.style.display = 'none';
 
-
-
-    if (humanChoice === "scissors" && computerChoice === "rock"){
-        alert("You lose! Rock beats scissors")
-        computerScore += 1
-    } else if (humanChoice === "scissors" && computerChoice == "paper") {
-        alert("You win! Scissors beats paper")
-        humanScore += 1
-    } else if (humanChoice === "scissors" && computerChoice == "scissors") {
-        alert("Tie game!")
-    } else if (humanChoice === "rock" && computerChoice == "paper") {
-        alert("You lose! Paper beats rock")
-        computerScore += 1
-    } else if (humanChoice === "rock" && computerChoice == "scissors") {
-        alert("You win! Rock beats scissors")
-        humanScore += 1
-    } else if (humanChoice === "rock" && computerChoice == "rock") {
-        alert("Tie game!")
-    } else if (humanChoice === "paper" && computerChoice == "scissors") {
-        alert("You lose! Scissors beats paper")
-        computerScore += 1
-    } else if (humanChoice === "paper" && computerChoice == "rock") {
-        alert("You win! Paper beats rock")
-        humanScore += 1
-    } else if (humanChoice === "paper" && computerChoice == "paper") {
-        alert("Tie game!")
+        if (playerScore > computerScore) {
+            result.style.fontSize = '2rem';
+            result.innerText = 'You Won The Game';
+            result.style.color = '#308D46';
+        }
+        else if (playerScore < computerScore){
+            result.style.fontSize = '2rem';
+            result.innerText = 'You Lost The Game';
+            result.style.color = 'red';
+        }
+        else {
+            result.style.fontSize = '2rem';
+            result.innerText = 'Tie';
+            result.style.color = 'grey'
+        }
+        reloadBtn.innerText = 'Restart';
+        reloadBtn.style.display = 'flex';
+        reloadBtn.addEventListener('click', () => {
+            window.location.reload();
+        })
     }
+
+    playGame();
 }
 
-
-
-function playGame(){
-
-
-    const computerSelection = getComputerChoice();
-
-    const humanSelection = getHumanChoice();
-
-    if (humanScore + computerScore !== 5){
-        playRound
-    } else if (humanScore + computerScore === 5){
-        } if (humanScore > computerScore){
-            alert("You Win!")
-        } else alert("You Lose!")
-
-
-}
+game();
